@@ -15,7 +15,7 @@ if (window.matchMedia('(hover:hover)').matches) {
 }
 
 /* ── Resume modal ── */
-const RESUME_URL = 'YOUR_RESUME_PDF_DIRECT_LINK'; // Replace with your PDF link
+const RESUME_URL = './Resume.pdf'; // Replace with your PDF link
 function openResume() {
   const modal = document.getElementById('resume-modal');
   const iframe = document.getElementById('resume-iframe');
