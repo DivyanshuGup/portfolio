@@ -19,17 +19,12 @@ const RESUME_URL = './Resume.pdf';
 function openResume() {
   const modal = document.getElementById('resume-modal');
   const iframe = document.getElementById('resume-iframe');
-  const desktopView = document.getElementById('resume-desktop-view');
-  const mobileView = document.getElementById('resume-mobile-view');
-  const isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-  if (isMobile) {
-    desktopView.style.display = 'none';
-    mobileView.style.display = 'flex';
-  } else {
-    desktopView.style.display = 'block';
-    mobileView.style.display = 'none';
-    iframe.src = RESUME_URL;
-  }
+  const isMobile = window.innerWidth < 900 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  // Google Docs viewer renders PDF on all devices including mobile
+  const viewerUrl = isMobile
+    ? `https://docs.google.com/viewer?url=${encodeURIComponent(window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/') + 'Resume.pdf')}&embedded=true`
+    : RESUME_URL;
+  iframe.src = viewerUrl;
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
